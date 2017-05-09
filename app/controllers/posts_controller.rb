@@ -1,10 +1,11 @@
 class PostsController < ApplicationController
   before_action :find_post, only: [:show, :destroy]
-  before_action :authenticate_admin!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show]
 
   # Index action to render all posts
   def index
     @posts = Post.all
+    
   end
 
   # New action for creating post
@@ -15,6 +16,7 @@ class PostsController < ApplicationController
   # Create action saves the post into database
   def create
     @post = Post.new(post_params)
+    @post.user_id = current_user.id
     if @post.save(post_params)
       flash[:notice] = "Successfully created post!"
       redirect_to post_path(@post)
