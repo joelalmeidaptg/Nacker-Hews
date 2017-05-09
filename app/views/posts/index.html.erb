@@ -12,8 +12,9 @@
   Upvote<% end %> | <%= link_to downvote_post_path(post), method: :put do %>
   Downvote<% end %>
       </div>
-      <br>
     </div>
     <% end %>
   </div>
+  
+  <%= will_paginate @posts %>
 </div>
