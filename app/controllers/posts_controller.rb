@@ -28,6 +28,7 @@ class PostsController < ApplicationController
 
   # The show action renders the individual post after retrieving the the id
   def show
+    commontator_thread_show(@post)
   end
 
   # The destroy action removes the post permanently from the database

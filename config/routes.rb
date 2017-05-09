@@ -12,4 +12,6 @@ Rails.application.routes.draw do
       put "downvote", to: "posts#downvote"
     end
   end
+  
+  mount Commontator::Engine => '/commontator'
 end
