@@ -46,6 +46,11 @@ class PostsController < ApplicationController
   end
 
   def find_post
-    @post = Post.find(params[:id])
+    begin
+      @post = Post.find(params[:id])
+    rescue ActiveRecord::RecordNotFound  
+      redirect_to :posts
+      return
+    end
   end
 end

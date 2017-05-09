@@ -1,7 +1,13 @@
-<div class="col-sm-11 col-xs-12 blog-content">
-  <h2 class="text-center"><a href="<%= @post.link %>"><%= @post.title %></a></h2>
-  <h5 class="text-center"><%= @post.created_at.strftime('%b %d, %Y') %></h5>
-  <% if admin_signed_in? %>
-    <%= :destroy %>
-  <% end %>
+<div class="container">
+  <div class="col-sm-10 col-sm-offset-1 col-xs-12 blog-content">
+    <div class="col-xs-12">
+      <div class="text-center">
+        <h2><a target="_blank" href="<%= @post.link %>"><%= @post.title %></a></h2>
+        <h6><%= @post.created_at.strftime('%b %d, %Y') %></h6>
+      </div>
+      <% if admin_signed_in? %>
+        <%= :destroy %>
+      <% end %>
+    </div>
+  </div>
 </div>
