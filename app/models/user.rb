@@ -8,6 +8,7 @@ class User < ApplicationRecord
   attr_accessor :login
   validates :username, presence: true, length: {maximum: 255}, uniqueness: { case_sensitive: false }, format: { with: /\A[a-zA-Z0-9]*\z/, message: "may only contain letters and numbers." }
   has_many :posts, class_name: 'Post', foreign_key: 'user_id', dependent: :destroy
+  acts_as_voter
   
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup

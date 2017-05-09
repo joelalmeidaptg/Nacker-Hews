@@ -3,12 +3,14 @@
     <% @posts.each do |post| %>
     <div class="col-xs-12">
       <div class="text-center">
-        <h2><a target="_blank" href="<%= post.link %>"><%= post.title %></a></h2>
+        <h2><a target="_blank" href="<%= post.link %>">(<%= post.get_upvotes.size - post.get_downvotes.size %>) <%= post.title %></a></h2>
         <h6>posted <%= post.created_at.strftime('%c') %> by <%= post.user.username %></h6>
       </div>
 
       <div class="text-center">
-        <%= link_to "View comments", post_path(post) %>
+        <%= link_to "View comments", post_path(post) %> | <%= link_to upvote_post_path(post), method: :put do %>
+  Upvote<% end %> | <%= link_to downvote_post_path(post), method: :put do %>
+  Downvote<% end %>
       </div>
       <br>
     </div>

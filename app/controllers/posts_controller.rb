@@ -4,7 +4,7 @@ class PostsController < ApplicationController
 
   # Index action to render all posts
   def index
-    @posts = Post.all
+    @posts = Post.order(cached_votes_up: :desc)
     
   end
 
@@ -39,6 +39,18 @@ class PostsController < ApplicationController
     else
       flash[:alert] = "Error updating post!"
     end
+  end
+  
+  def upvote 
+    @post = Post.find(params[:id])
+    @post.upvote_by current_user
+    redirect_to :back
+  end
+  
+  def downvote
+    @post = Post.find(params[:id])
+    @post.downvote_by current_user
+    redirect_to :back
   end
 
   private

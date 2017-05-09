@@ -6,4 +6,10 @@ Rails.application.routes.draw do
   resources :posts
   resources :index, :path => "home"
   
+  resources :posts do 
+    member do
+      put "upvote", to: "posts#upvote"
+      put "downvote", to: "posts#downvote"
+    end
+  end
 end
