@@ -11,6 +11,7 @@ class User < ApplicationRecord
   acts_as_voter
   acts_as_commontator
   
+  #Login using either email or username
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
     if login = conditions.delete(:login)
@@ -22,9 +23,8 @@ class User < ApplicationRecord
   
   protected
 
-  # Attempt to find a user by it's email. If a record is found, send new
-  # password instructions to it. If not user is found, returns a new user
-  # with an email not found error.
+  # Attempt to find a user by it's email or username. If a record is found, send new
+  # password instructions to it. If no user is found, returns an error
   def self.send_reset_password_instructions attributes = {}
     recoverable = find_recoverable_or_initialize_with_errors(reset_password_keys, attributes, :not_found)
     recoverable.send_reset_password_instructions if recoverable.persisted?
