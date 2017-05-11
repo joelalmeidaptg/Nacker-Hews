@@ -21,7 +21,7 @@
           | <%= link_to upvote_post_path(post), method: :put do %>Upvote<% end %> | <%= link_to downvote_post_path(post), method: :put do %>Downvote<% end %>
          <% end %>
          | <%= link_to "View comments (#{post.cached_votes_total})", post_path(post) %>
-         <% if post.user = current_user || admin_signed_in? %>
+         <% if post.user == current_user || admin_signed_in? %>
            | <%= link_to 'Delete', post_path(post),
             data: {:confirm => 'Are you sure?'}, :method => :delete %>
          <% end %>
