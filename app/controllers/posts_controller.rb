@@ -4,7 +4,7 @@ class PostsController < ApplicationController
 
   # Index action to render all posts
   def index
-    ordered_posts = Post.order(cached_weighted_average: :desc)
+    ordered_posts = Post.order(cached_weighted_score: :desc)
     @posts = ordered_posts.paginate(:page => params[:page], :per_page => 30)
   end
 
