@@ -24,7 +24,7 @@
             <% if !current_user.voted_down_on? post %>
               | <%= link_to downvote_post_path(post), method: :put do %>Downvote<% end %>
             <% end %>
-          <% else %>
+          <% elsif !admin_signed_in? %>
             | <%= link_to upvote_post_path(post), method: :put do %>Upvote<% end %> | <%= link_to downvote_post_path(post), method: :put do %>Downvote<% end %>
            <% end %>
            | <%= link_to "View comments (#{count})", post_path(post) %>

@@ -1,14 +1,39 @@
 <div class="container">
   <div class="col-sm-10 col-sm-offset-1 col-xs-12 blog-content">
-    <div class="col-xs-12">
-      <div class="text-center">
-        <h2><a target="_blank" href="<%= @post.link %>"><%= @post.title %></a></h2>
-        <h6>posted <%= @post.created_at.strftime('%c') %> by <%= @post.user.username %></h6>
+    <% if !@post.deleted? || admin_signed_in? %>
+      <div class="col-xs-12">
+        <div class="text-center">
+
+          <h2><a target="_blank" href="<%= @post.link %>"><%= @post.title %></a></h2>
+          <h6>posted <%= @post.created_at.localtime.strftime('%c') %> by <%= @post.user.username %>
+          <% if @post.deleted? %>
+            <font color="red">DELETED</font>
+          <% end %>
+          </h6>
+        </div>
+        
+        <% count = get_comment_count(@post) %>
+
+        <div class="text-center">
+          Pontuation: <%= @post.cached_weighted_score %> 
+          <% if user_signed_in? %>
+            <% if !current_user.voted_up_on? @post %>
+              | <%= link_to upvote_post_path(post), method: :put do %>Upvote<% end %>
+            <% end %>
+            <% if !current_user.voted_down_on? @post %>
+              | <%= link_to downvote_post_path(post), method: :put do %>Downvote<% end %>
+            <% end %>
+          <% elsif !admin_signed_in? %>
+            | <%= link_to upvote_post_path(@post), method: :put do %>Upvote<% end %> | <%= link_to downvote_post_path(@post), method: :put do %>Downvote<% end %>
+           <% end %>
+           | <%= link_to "View comments (#{count})", post_path(@post) %>
+           <% if !@post.deleted? && (@post.user == current_user || admin_signed_in?) %>
+             | <%= link_to 'Delete', post_path(@post),
+              data: {:confirm => 'Are you sure?'}, :method => :delete %>
+           <% end %>
+        </div>
       </div>
-      <% if admin_signed_in? %>
-        <%= :destroy %>
-      <% end %>
-    </div>
+    <% end %>
   </div>
   
 </div>

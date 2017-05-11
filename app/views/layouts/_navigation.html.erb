@@ -17,6 +17,10 @@
           <li><%= link_to 'New Post', new_post_path %></li>
           <li><%= link_to 'My Account', edit_user_registration_path  %></li>
           <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete %></li>
+        <% elsif admin_signed_in? %>
+          <li><%= link_to 'New Post', new_post_path %></li>
+          <li><%= link_to 'My Account', edit_admin_registration_path  %></li>
+          <li><%= link_to 'Logout', destroy_admin_session_path, :method => :delete %></li>
         <% else %>
           <li><%= link_to 'Login', new_user_session_path  %></li>
         <% end %>
