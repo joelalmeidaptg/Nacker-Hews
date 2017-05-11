@@ -12,6 +12,8 @@
           <% end %>
           </h6>
         </div>
+        
+        <% count = get_comment_count(post) %>
 
         <div class="text-center">
           Pontuation: <%= post.cached_weighted_score %> 
@@ -25,7 +27,7 @@
           <% else %>
             | <%= link_to upvote_post_path(post), method: :put do %>Upvote<% end %> | <%= link_to downvote_post_path(post), method: :put do %>Downvote<% end %>
            <% end %>
-           | <%= link_to "View comments (#{post.cached_votes_total})", post_path(post) %>
+           | <%= link_to "View comments (#{count})", post_path(post) %>
            <% if !post.deleted? && (post.user == current_user || admin_signed_in?) %>
              | <%= link_to 'Delete', post_path(post),
               data: {:confirm => 'Are you sure?'}, :method => :delete %>

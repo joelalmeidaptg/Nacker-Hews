@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
   before_action :find_post, only: [:show, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
+  
+  helper_method :get_comment_count
 
   # Index action to render all posts
   def index
@@ -68,4 +70,19 @@ class PostsController < ApplicationController
       return
     end
   end
+  
+  def get_comment_count(post)
+    results = ActiveRecord::Base.connection.exec_query("SELECT commontable_id AS post_id, COUNT(commontable_id) AS comment_count 
+                                                        FROM commontator_comments c, commontator_threads t 
+                                                        WHERE c.thread_id = t.id AND commontable_id = #{post.id}
+                                                        GROUP BY commontable_id;")
+    if results.present?
+      data = results.first
+      label = "comment_count"
+      return data[label]
+    else
+      return 0
+    end
+  end
+  
 end
