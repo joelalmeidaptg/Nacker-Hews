@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170509180922) do
+ActiveRecord::Schema.define(version: 20170511161924) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "email",                  default: "", null: false
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 20170509180922) do
     t.integer  "cached_weighted_score",              default: 0
     t.integer  "cached_weighted_total",              default: 0
     t.float    "cached_weighted_average", limit: 24, default: 0.0
+    t.datetime "deleted_at"
     t.index ["cached_votes_down"], name: "index_posts_on_cached_votes_down", using: :btree
     t.index ["cached_votes_score"], name: "index_posts_on_cached_votes_score", using: :btree
     t.index ["cached_votes_total"], name: "index_posts_on_cached_votes_total", using: :btree
