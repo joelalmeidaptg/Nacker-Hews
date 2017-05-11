@@ -6,7 +6,7 @@
         <div class="text-center">
 
           <h2><a target="_blank" href="<%= post.link %>"><%= post.title %></a></h2>
-          <h6>posted <%= post.created_at.strftime('%c') %> by <%= post.user.username %>
+          <h6>posted <%= post.created_at.localtime.strftime('%c') %> by <%= post.user.username %>
           <% if post.deleted? %>
             <font color="red">DELETED</font>
           <% end %>
