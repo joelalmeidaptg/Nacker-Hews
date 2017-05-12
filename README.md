@@ -12,12 +12,12 @@ For this project I used the following tools:
 - MySQL 5.7.18
 - bundler 1.14.6
 - The following ruby gems:
--- simple_form
--- bootstrap-sass
--- devise
--- acts_as_votable
--- will_paginate
--- commontator
+- - simple_form
+- - bootstrap-sass
+- - devise
+- - acts_as_votable
+- - will_paginate
+- - commontator
 
 ## Setup
 You can follow [this tutorial](https://gorails.com/setup/ubuntu/16.04) to install Ruby/Bundler/RoR in Ubuntu 16.04.
