@@ -30,7 +30,7 @@ default: &default
   encoding: utf8
   pool: 5
   username: root
-  password: KappaPride
+  password: 
   socket: /var/run/mysqld/mysqld.sock
 ```
 
