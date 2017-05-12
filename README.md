@@ -1,7 +1,7 @@
 # Nacker-Hews
 A Hacker News clone for my application for an internship position at Faber Ventures.
 
-I have never done any kind of projet with any of the tools required for this project and although I have some experience with PHP and Python, I decided that since I was going to take some time with this project I might as well learn something new, in this case the Ruby language and the Ruby on Rails plattform. Please do take into account that being my first time meddling with the language, my knowleadge is limited to what I learned in the past four days from writting this documment.
+I have never done any kind of projet with any of the tools required for this project and although I have some experience with PHP and Python, I decided that since I was going to take some time with this project I might as well learn something new, in this case the Ruby language and the Ruby on Rails plattform. Please do take into account that being my first time meddling with the language, my knowledge is limited to what I learned in the past four days from writting this documment.
 
 That being said, I also have lots of workload at the university and because of that I decided to use as much existing modules that already exist as I could to save time.
 
